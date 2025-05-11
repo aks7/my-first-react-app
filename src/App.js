@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 import ProductList from './ProductList';
 import ProductList1 from './ProductList1';
@@ -7,10 +8,25 @@ import AjaxCallTest from './AjaxCallTest';
 
 
 function App() {
+  const [cart, setCart] = useState({});
+  function increaseQuantity(product) {
+    const newCart = { ...cart };
+    if (!newCart[product.id]) {
+      newCart[product.id] = {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        quantity: 0
+      };
+    }
+    newCart[product.id].quantity += 1;
+    setCart(newCart);  // if newCart is differernce reference then only react will reder the whole comp
+
+  }
   return (
     <div className="App">
-     <ProductList1/>
-     <AjaxCallTest/>
+      <ProductList1 cart={cart} increaseQuantity={increaseQuantity} />
+      <AjaxCallTest cart={cart} increaseQuantity={increaseQuantity} />
     </div>
   );
 }
@@ -30,3 +46,6 @@ export default App;
 //and put it on pending list
 
 //nextJs is used for making react se optimized
+
+//props drilling-------------------
+//passing parameter form parent to the last child by every level

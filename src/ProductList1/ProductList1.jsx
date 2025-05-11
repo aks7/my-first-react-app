@@ -61,24 +61,37 @@ let productPromise = new Promise(function (resolve, reject) {
     }
 });
 
-function ProductList1() {
+function ProductList1({ cart, increaseQuantity }) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [allProducts, setAllProducts] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        productPromise
-            .then(function (result) {
-                console.log("Resolved with:", result);
+    //     productPromise
+    //         .then(function (result) {
+    //             console.log("Resolved with:", result);
+    //             setAllProducts(result);
+    //             setIsLoading(false);
+    //         })
+    //         .catch(function (error) {
+    //             console.error("Rejected with:", error);
+    //             setAllProducts([]);
+    //             setIsLoading(false);
+    //         });
+    // }, []);
+
+    useEffect(() => {
+        console.log("cart ==", cart);
+        fetch("http://localhost:8080/getProducts")
+            .then(function (response) {
+                return response.json();
+            })
+            .then((result) => {
+                console.log("Response from fetch call =", result);
                 setAllProducts(result);
                 setIsLoading(false);
             })
-            .catch(function (error) {
-                console.error("Rejected with:", error);
-                setAllProducts([]);
-                setIsLoading(false);
-            });
     }, []);
 
 
@@ -89,7 +102,12 @@ function ProductList1() {
             <div className="products">
                 {allProducts.map(
                     function (product) {
-                        return (<ProductCard key={product.id} id={product.id} title={product.title} price={product.price} />);
+                        return (<ProductCard
+                            key={product.id}
+                            product={product}
+                            cart={cart}
+                            increaseQuantity={increaseQuantity}
+                        />);
                     }
                 )}
             </div>
