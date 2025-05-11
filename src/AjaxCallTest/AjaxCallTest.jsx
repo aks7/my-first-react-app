@@ -6,11 +6,12 @@ function loadDoc() {
     xhhtp.onreadystatechange = function () {
         console.log("this.readyStat= ", this.readyState);
         if (this.readyState == 4 && this.status == 200) {
-           // document.getElementById("demo").innerHTML = this.responseText;
-            document.getElementById("demo").innerHTML = "AJAX call completed......................";
+           document.getElementById("demo").innerHTML = this.responseText;
+           // document.getElementById("demo").innerHTML = "AJAX call completed......................";
         }
     };
-    xhhtp.open("GET", "/Xml/ajax_info.txt");
+    //xhhtp.open("GET", "/Xml/ajax_info.txt");
+    xhhtp.open("GET","http://localhost:8080/getProducts");
     xhhtp.send();
 }
 
