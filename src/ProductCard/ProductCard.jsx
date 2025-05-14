@@ -1,4 +1,5 @@
 import AddToCart from "../AddToCart";
+import Rating from "../Rating";
 import "./ProductCard.css"
 
 function ProductCard(props) {
@@ -7,6 +8,7 @@ function ProductCard(props) {
             <h3>{props.product.id}</h3>
             <h3>{props.product.title}</h3>
             <h3>{props.product.price}</h3>
+            <Rating rating={3} maxRating={5} size={1} />
             <AddToCart
                 product={props.product}
                 cart={props.cart}
