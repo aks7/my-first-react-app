@@ -61,7 +61,7 @@ let productPromise = new Promise(function (resolve, reject) {
     }
 });
 
-function ProductList1({ cart, increaseQuantity }) {
+function ProductList1({ cart, increaseQuantity, decreaseQuantity }) {
 
     const [isLoading, setIsLoading] = useState(true);
     const [allProducts, setAllProducts] = useState([]);
@@ -107,6 +107,7 @@ function ProductList1({ cart, increaseQuantity }) {
                             product={product}
                             cart={cart}
                             increaseQuantity={increaseQuantity}
+                            decreaseQuantity={decreaseQuantity}
                         />);
                     }
                 )}

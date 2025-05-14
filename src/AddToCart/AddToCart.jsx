@@ -2,9 +2,12 @@ import './AddToCart.css'
 
 
 
-function AddToCart({ product, cart, increaseQuantity }) {
+function AddToCart({ product, cart, increaseQuantity, decreaseQuantity }) {
     function addQuantity() {
         increaseQuantity(product);
+    }
+    function removeQuantity() {
+        decreaseQuantity(product);
     }
     console.log(cart);
     // console.log("cart in AddToCart component=", cart);
@@ -12,12 +15,10 @@ function AddToCart({ product, cart, increaseQuantity }) {
     console.log(cart['{product.id}']);
     if (quantity > 0) {
         return (
-            <div className='cart-wrapper'>
-            <div className="quantity-controls">
+            <div className="quantity-controls1">
+                <button type="button" onClick={removeQuantity} > -</button>
+                <span  >{quantity}</span>
                 <button type="button" onClick={addQuantity} > +</button>
-                <h4>{quantity}</h4>
-                <button type="button" onClick={addQuantity} > -</button>
-            </div>
             </div>
         )
     } else {

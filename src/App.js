@@ -23,10 +23,24 @@ function App() {
     setCart(newCart);  // if newCart is differernce reference then only react will reder the whole comp
 
   }
+
+  function decreaseQuantity(product) {
+    const newCart = { ...cart };
+    if (newCart[product.id]) {
+      newCart[product.id].quantity -= 1;
+
+      if (newCart[product.id].quantity === 0) {
+        delete newCart[product.id];
+      }
+    }
+    setCart(newCart);  // if newCart is differernce reference then only react will reder the whole comp
+  }
+
+
   return (
     <div className="App">
-      <ProductList1 cart={cart} increaseQuantity={increaseQuantity} />
-      <AjaxCallTest cart={cart} increaseQuantity={increaseQuantity} />
+      <ProductList1 cart={cart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
+      <AjaxCallTest cart={cart} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
     </div>
   );
 }

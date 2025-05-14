@@ -10,7 +10,9 @@ function ProductCard(props) {
             <AddToCart
                 product={props.product}
                 cart={props.cart}
-                increaseQuantity={props.increaseQuantity} />
+                increaseQuantity={props.increaseQuantity}
+                decreaseQuantity={props.decreaseQuantity}
+            />
         </div>
     )
 }
